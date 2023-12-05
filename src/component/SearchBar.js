@@ -8,6 +8,9 @@ const SearchBar = ({
   setFilteredList1,
   filteredList2,
   setFilteredList2,
+  handleCompare,
+  handleOptions,
+  handleOptionShow,
 }) => {
   const [inputVal1, setInputVal1] = useState("");
 
@@ -80,7 +83,7 @@ const SearchBar = ({
               onChange={(e) => handleInput1(e.target.value)}
               value={inputVal1}
             />
-            <button className="close-list" onClick={() => setFilteredList1("")}>
+            <button className="close-list" onClick={() => setInputVal1("")}>
               X
             </button>
           </div>
@@ -139,6 +142,37 @@ const SearchBar = ({
               Country Selected -<span className="country">{inputVal2}</span>
             </span>
           )}
+        </div>
+        <button className="chart-btn" onClick={(e) => handleCompare(e)}>
+          Compare and Show Chart
+        </button>
+        <div className="option-mainDiv">
+          <button className="options-btn" onClick={(e) => handleOptionShow(e)}>
+            Options
+          </button>
+          <div className="option-list">
+            <ol>
+              <li
+                id="population"
+                className="option-active"
+                onClick={(e) => handleOptions(e)}
+              >
+                Population
+              </li>
+              <li id="surface_area" onClick={(e) => handleOptions(e)}>
+                Surface Area
+              </li>
+              <li id="sex_ratio" onClick={(e) => handleOptions(e)}>
+                Sex Ratio
+              </li>
+              <li id="tourists" onClick={(e) => handleOptions(e)}>
+                Tourists
+              </li>
+              <li id="internet_users" onClick={(e) => handleOptions(e)}>
+                Internet Users
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
     </>

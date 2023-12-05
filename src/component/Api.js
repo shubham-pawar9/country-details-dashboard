@@ -39,6 +39,8 @@ const Api = ({
         .then((res) => setItemArray((prevItem) => [...prevItem, res]))
         .catch((err) => console.error(err));
     }
+    if (itemArray.length >= 2)
+      document.querySelector(".chart-btn").classList.add("btn-show");
     return () => {
       setItemShow1("");
       setItemShow2("");

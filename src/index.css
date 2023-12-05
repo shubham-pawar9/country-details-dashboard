@@ -26,10 +26,10 @@ code {
     padding: 10px 15px;
     border-radius: 3px;
     background-color: #f4efef;
-    margin-top: 20px;
     width: 200px;
-    transition: all 2s linear;
-    cursor: pointer;
+    transition: box-shadow 2s linear;
+    cursor: no-drop;
+    pointer-events: none;
 }
 .chart-btn.active {
   box-shadow: inset 200px 0px 0px 0px #4bc0c0;

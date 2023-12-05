@@ -49,9 +49,24 @@ const App = () => {
     e.target.classList.add("active");
     // setShowOptions(true);
     document.querySelector(".option-list").classList.add("active");
+    document.getElementById("population").classList.add("option-active");
   };
   const handleOptions = (e) => {
+    if (document.querySelector(".option-active"))
+      document
+        .querySelector(".option-active")
+        .classList.remove("option-active");
     setCompareOptions(e.target.id);
+    e.target.classList.add("option-active");
+  };
+  const handleOptionShow = (e) => {
+    if (document.querySelector(".option-mainDiv").classList.contains("show")) {
+      e.target.innerHTML = "Options";
+      document.querySelector(".option-mainDiv").classList.remove("show");
+    } else {
+      e.target.innerHTML = "X";
+      document.querySelector(".option-mainDiv").classList.add("show");
+    }
   };
   useEffect(() => {
     timeOutRef.current = setTimeout(() => {
@@ -59,6 +74,14 @@ const App = () => {
       setFilteredList1(false);
       setFilteredList2(false);
     }, 6000);
+    if (document.querySelector(".chart-btn.active"))
+      document.querySelector(".chart-btn.active").classList.remove("active");
+    if (document.querySelector(".option-list.active"))
+      document.querySelector(".option-list.active").classList.remove("active");
+    if (document.querySelector(".option-active"))
+      document
+        .querySelector(".option-active")
+        .classList.remove("option-active");
     return () => {
       clearTimeout(timeOutRef.current);
     };
@@ -95,6 +118,9 @@ const App = () => {
           setFilteredList1={setFilteredList1}
           filteredList2={filteredList2}
           setFilteredList2={setFilteredList2}
+          handleCompare={handleCompare}
+          handleOptions={handleOptions}
+          handleOptionShow={handleOptionShow}
         />
         <Api
           itemShow1={itemShow1}
@@ -104,30 +130,6 @@ const App = () => {
           setItemArray={setItemArray}
           itemArray={itemArray}
         />
-
-        <button className="chart-btn" onClick={(e) => handleCompare(e)}>
-          Compare and Show Chart
-        </button>
-
-        <div className="option-list">
-          <ol>
-            <li id="population" onClick={(e) => handleOptions(e)}>
-              Population
-            </li>
-            <li id="surface_area" onClick={(e) => handleOptions(e)}>
-              surface_area
-            </li>
-            <li id="sex_ratio" onClick={(e) => handleOptions(e)}>
-              sex_ratio
-            </li>
-            <li id="tourists" onClick={(e) => handleOptions(e)}>
-              tourists
-            </li>
-            <li id="internet_users" onClick={(e) => handleOptions(e)}>
-              internet_users
-            </li>
-          </ol>
-        </div>
 
         {chartData && (
           <PieChart

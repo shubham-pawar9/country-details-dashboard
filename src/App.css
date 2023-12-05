@@ -1,3 +1,6 @@
+html {
+  overflow: hidden;
+}
 .App {
   display: flex;
   flex-direction: column;
@@ -6,8 +9,9 @@
 .header {
   display: flex;
   flex-direction: row;
-  margin-top: 50px;
+  margin-top: 20px;
   justify-content: center;
+  align-items: flex-start;
 }
 .list-div ul{
   list-style-type: none;
@@ -45,8 +49,7 @@
   color: #757575;
 }
 .chart-container {
-  height: 80vh;
-  width: 80vw;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,21 +74,51 @@
   height: 0;
   overflow: hidden;
   transition: all 0.4s linear 2s;
+  background-color: #e5e0e052;
 }
 .option-list li {
   cursor: pointer;
   padding-left: 20px;
   margin: 5px 0;
+  transition: box-shadow 2s linear;
 }
 .option-list li:hover {
-  background-color: #4bc0c0;
+  background-color: #ecf0f1;
 }
 .option-list ol {
   list-style-type: none;
-  margin: 0;
+  margin-top: -5px;
   padding: 0;
 }
 .option-list.active {
   height: 135px;
   width: 200px;
+}
+.option-active {
+  box-shadow: inset 200px 0px 0px 0px #4bc0c0;
+}
+.options-btn {
+  border: none;
+    padding: 5px 10px;
+    background-color: #4bc0c0;
+    border-radius: 2px;
+    cursor: pointer;
+    
+}
+.option-mainDiv {
+  display: flex;
+  align-items: flex-start;
+  position: absolute;
+  right: -200px;
+  top: 50%;
+  transform: translate(0,-50%);
+  transition: all 0.5s linear;
+}
+.option-mainDiv.show {
+  right: 0;
+}
+.chart-btn.btn-show {
+  pointer-events: all;
+  background-color: #98e9e2;
+  cursor: pointer;
 }
