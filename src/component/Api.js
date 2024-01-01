@@ -47,7 +47,7 @@ const Api = ({
       setItemArray([]);
     };
   }, [itemShow1, itemShow2]);
-  console.log(itemArray);
+  // console.log(itemArray);
   return <></>;
 };
 export default Api;

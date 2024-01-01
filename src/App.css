@@ -75,6 +75,7 @@ html {
   overflow: hidden;
   transition: all 0.4s linear 2s;
   background-color: #e5e0e052;
+  overflow: auto;
 }
 .option-list li {
   cursor: pointer;
@@ -91,7 +92,7 @@ html {
   padding: 0;
 }
 .option-list.active {
-  height: 135px;
+  height: 350px;
   width: 200px;
 }
 .option-active {

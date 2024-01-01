@@ -11,6 +11,7 @@ const SearchBar = ({
   handleCompare,
   handleOptions,
   handleOptionShow,
+  mainData,
 }) => {
   const [inputVal1, setInputVal1] = useState("");
 
@@ -20,6 +21,7 @@ const SearchBar = ({
   const [showCountry2, setShowCountry2] = useState("");
 
   const [list, setList] = useState([]);
+  const [optionsList, setOptionsList] = useState([]);
 
   const handleCheckSearch1 = (val) => {
     return list.filter((item) => {
@@ -72,6 +74,18 @@ const SearchBar = ({
       .then((res) => setList(() => res.map((item) => item.name.toLowerCase())))
       .catch((err) => console.error(err));
   }, []);
+  // console.log(mainData);
+  useEffect(() => {
+    if (mainData) {
+      const numericKeysSet = new Set(
+        mainData.flatMap((items) =>
+          Object.keys(items).filter((key) => typeof items[key] === "number")
+        )
+      );
+      setOptionsList(Array.from(numericKeysSet));
+    }
+  }, [mainData, setOptionsList]);
+  console.log(optionsList);
   return (
     <>
       <div className="header">
@@ -152,25 +166,14 @@ const SearchBar = ({
           </button>
           <div className="option-list">
             <ol>
-              <li
-                id="population"
-                className="option-active"
-                onClick={(e) => handleOptions(e)}
-              >
-                Population
-              </li>
-              <li id="surface_area" onClick={(e) => handleOptions(e)}>
-                Surface Area
-              </li>
-              <li id="sex_ratio" onClick={(e) => handleOptions(e)}>
-                Sex Ratio
-              </li>
-              <li id="tourists" onClick={(e) => handleOptions(e)}>
-                Tourists
-              </li>
-              <li id="internet_users" onClick={(e) => handleOptions(e)}>
-                Internet Users
-              </li>
+              {optionsList &&
+                optionsList.map((item, index) => {
+                  return (
+                    <li key={index} id={item} onClick={(e) => handleOptions(e)}>
+                      {item}
+                    </li>
+                  );
+                })}
             </ol>
           </div>
         </div>
